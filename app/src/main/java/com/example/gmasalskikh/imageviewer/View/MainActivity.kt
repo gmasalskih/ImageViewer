@@ -1,7 +1,8 @@
-package com.example.gmasalskikh.imageviewer
+package com.example.gmasalskikh.imageviewer.View
 
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import com.example.gmasalskikh.imageviewer.R
 
 class MainActivity : AppCompatActivity() {
 
