@@ -1,4 +1,4 @@
-package com.example.gmasalskikh.imageviewer.Web
+package com.example.gmasalskikh.imageviewer.web
 
 import Util.Const.BASE_URL
 import Util.WebHelper.Api
