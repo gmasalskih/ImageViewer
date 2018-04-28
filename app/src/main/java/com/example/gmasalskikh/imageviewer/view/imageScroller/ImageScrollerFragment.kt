@@ -53,19 +53,19 @@ class ImageScrollerFragment : Fragment() {
         : RecyclerView.ViewHolder(inflater.inflate(R.layout.item_image_scroller, parent, false)) {
 
         fun bind(position: Int) {
-            RestApi.webApi.getUserById(5123)
-                    .observeOn(AndroidSchedulers.mainThread())
-                    .subscribeWith(object :DisposableObserver<Any>(){
-                        override fun onComplete() {
-                        }
-
-                        override fun onNext(t: Any) {
-                        }
-
-                        override fun onError(e: Throwable) {
-                        }
-
-                    })
+//            RestApi.webApi.getUserById(5123)
+//                    .observeOn(AndroidSchedulers.mainThread())
+//                    .subscribeWith(object :DisposableObserver<Any>(){
+//                        override fun onComplete() {
+//                        }
+//
+//                        override fun onNext(t: Any) {
+//                        }
+//
+//                        override fun onError(e: Throwable) {
+//                        }
+//
+//                    })
             itemView.item_text.text = db[position].toString()
         }
 
