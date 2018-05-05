@@ -1,21 +1,35 @@
 package com.example.gmasalskikh.imageviewer.view.imageScroller
 
-import android.support.v4.app.Fragment
-import android.widget.Adapter
 import com.example.gmasalskikh.imageviewer.data.Item
 import com.example.gmasalskikh.imageviewer.data.ItemProvider
+import io.reactivex.android.schedulers.AndroidSchedulers
 import org.koin.standalone.inject
 
-class ImageScrollerPresenter : BaseImageScrollerPresenter {
+class ImageScrollerPresenter(override val view: BaseImageScroller.View) : BaseImageScroller.Presenter {
+
 
     private val provider: ItemProvider by inject()
 
-    override fun getItemProvider(): ItemProvider {
-        return provider
+    override fun init() {
+        provider.getItemList()
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe({
+                    view.setListItem(it)
+                },{
+
+                },{
+                    view.updateUI()
+                })
     }
 
-    override fun setLastItem(item: Item) {
+    override fun clickToItem(item: Item) {
         provider.lastItem = item
     }
+
+    override fun stop() {
+    }
+
+
+
 
 }

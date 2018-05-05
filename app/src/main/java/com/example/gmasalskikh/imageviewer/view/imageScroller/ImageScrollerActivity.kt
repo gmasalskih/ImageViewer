@@ -16,9 +16,4 @@ class ImageScrollerActivity : BaseActivity() {
         setContentView(R.layout.activity_image_scroller)
         setFragment(R.id.image_scroller_container, imageScrollerFragment)
     }
-
-    fun update(){
-
-    }
-
 }

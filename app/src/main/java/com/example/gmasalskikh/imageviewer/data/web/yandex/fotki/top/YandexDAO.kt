@@ -6,7 +6,6 @@ import com.example.gmasalskikh.imageviewer.data.web.yandex.fotki.top.api.YandexA
 import io.reactivex.Observable
 import org.koin.standalone.inject
 
-
 object YandexDAO : DAO {
 
     private val api: YandexApi by inject()
@@ -17,7 +16,6 @@ object YandexDAO : DAO {
                     Observable.fromIterable(it.entries)
                 }.map {
                     Item(it.title.toString(), it.links!!.editMedia.toString())
-                }.publish()
-                .autoConnect()
+                }
     }
 }
