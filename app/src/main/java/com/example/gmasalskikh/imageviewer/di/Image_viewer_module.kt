@@ -7,7 +7,7 @@ import com.example.gmasalskikh.imageviewer.view.imageViewer.ImageViewerPresenter
 import org.koin.dsl.module.applicationContext
 
 val image_viewer_module = applicationContext {
-    context(ImageViewerActivity::class.java.simpleName) {
+    context(DIContext.IMAGE_VIEWER.name) {
         bean { ImageViewerPresenter() as BaseImageViewerPresenter }
         factory { ImageViewerFragment() }
     }

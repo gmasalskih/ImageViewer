@@ -1,9 +1,31 @@
 package com.example.gmasalskikh.imageviewer.data
 
-interface ItemProvider {
+import io.reactivex.android.schedulers.AndroidSchedulers
+import org.koin.standalone.KoinComponent
+import org.koin.standalone.inject
 
-    var lastItem: Item
+object ItemProvider : KoinComponent {
 
-    fun getItem(position: Int): Item
-    fun countItems(): Int
+    lateinit var lastItem: Item
+
+    private val listItem = ArrayList<Item>()
+
+    val dao: DAO by inject("YandexDAO")
+
+    init {
+        dao.getItems()
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe {
+                    listItem.add(it)
+                }
+    }
+
+    fun getItem(index: Int): Item {
+        return listItem[index]
+    }
+
+    fun countItems(): Int {
+        return listItem.size
+    }
+
 }

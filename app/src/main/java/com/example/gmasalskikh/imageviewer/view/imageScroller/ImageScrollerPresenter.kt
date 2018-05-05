@@ -1,15 +1,21 @@
 package com.example.gmasalskikh.imageviewer.view.imageScroller
 
+import android.support.v4.app.Fragment
+import android.widget.Adapter
 import com.example.gmasalskikh.imageviewer.data.Item
 import com.example.gmasalskikh.imageviewer.data.ItemProvider
 import org.koin.standalone.inject
 
-class ImageScrollerPresenter:BaseImageScrollerPresenter {
+class ImageScrollerPresenter : BaseImageScrollerPresenter {
 
-    private val itemProvider:ItemProvider by inject()
+    private val provider: ItemProvider by inject()
+
+    override fun getItemProvider(): ItemProvider {
+        return provider
+    }
 
     override fun setLastItem(item: Item) {
-        itemProvider.lastItem = item
+        provider.lastItem = item
     }
 
 }

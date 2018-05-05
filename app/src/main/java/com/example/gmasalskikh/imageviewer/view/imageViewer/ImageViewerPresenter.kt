@@ -6,7 +6,7 @@ import org.koin.standalone.inject
 
 class ImageViewerPresenter : BaseImageViewerPresenter {
 
-    private val itemProvider:ItemProvider by inject()
+    private val itemProvider: ItemProvider by inject()
 
     override fun getItem(): Item {
         return itemProvider.lastItem
