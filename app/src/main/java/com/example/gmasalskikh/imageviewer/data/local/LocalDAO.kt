@@ -10,7 +10,7 @@ object LocalDAO : DAO {
         return Observable.fromIterable(list)
                 .subscribeOn(Schedulers.io())
                 .map {
-                    Item(it.toString(), "https://4b4d7c93-2589-4633-9d37-d2a10711e9eb.mock.pstmn.io/$it")
+                    Item(it.toString(), "https://4b4d7c93-2589-4633-9d37-d2a10711e9eb.mock.pstmn.io/$it","")
                 }
     }
 }

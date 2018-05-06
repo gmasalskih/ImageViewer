@@ -8,11 +8,14 @@ import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.Toast
 import com.example.gmasalskikh.imageviewer.R
 import com.example.gmasalskikh.imageviewer.data.Item
 import com.example.gmasalskikh.imageviewer.di.DIContext
 import com.example.gmasalskikh.imageviewer.view.imageViewer.ImageViewerActivity
+import com.squareup.picasso.Picasso
+import kotlinx.android.synthetic.main.item_image_scroller.*
 import kotlinx.android.synthetic.main.item_image_scroller.view.*
 import kotlinx.android.synthetic.main.recycler_view_image_scroller.view.*
 import org.koin.android.ext.android.inject
@@ -72,10 +75,12 @@ class ImageScrollerFragment : Fragment(), BaseImageScroller.View {
         }
     }
 
-    private inner class Holder(view: View) : RecyclerView.ViewHolder(view) {
+    private inner class Holder(val view1: View) : RecyclerView.ViewHolder(view1) {
         fun bind(item: Item) {
-            itemView.item_text.text = item.toString()
-            itemView.setOnClickListener {
+            Picasso.get()
+                    .load(item.url)
+                    .into(view1.findViewById<ImageView>(R.id.itemImageView))
+            view1.findViewById<ImageView>(R.id.itemImageView).setOnClickListener {
                 presenter.clickToItem(item)
                 startActivity(Intent(activity, ImageViewerActivity::class.java))
             }

@@ -5,11 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <TextView
-        android:id="@+id/text_view"
-        android:text="123"
-        android:textSize="36dp"
-        android:gravity="center"
+    <ImageView
+        android:id="@+id/imageViewer"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 

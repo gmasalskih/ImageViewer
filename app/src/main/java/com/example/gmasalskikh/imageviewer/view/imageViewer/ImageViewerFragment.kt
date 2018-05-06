@@ -5,11 +5,11 @@ import android.support.v4.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
+import android.widget.ImageView
 import android.widget.Toast
 import com.example.gmasalskikh.imageviewer.R
-import com.example.gmasalskikh.imageviewer.data.Item
 import com.example.gmasalskikh.imageviewer.di.DIContext
+import com.squareup.picasso.Picasso
 import org.koin.android.ext.android.inject
 
 class ImageViewerFragment: Fragment(), BaseImageViewer.View {
@@ -35,7 +35,8 @@ class ImageViewerFragment: Fragment(), BaseImageViewer.View {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         val view =  inflater.inflate(R.layout.fragment_image_viewer, container, false)
-        view.findViewById<TextView>(R.id.text_view).text = presenter.getLastItem().toString()
+        val iv = view.findViewById<ImageView>(R.id.imageViewer)
+        Picasso.get().load(presenter.getLastItem().urlMax).into(iv)
         return view
     }
 

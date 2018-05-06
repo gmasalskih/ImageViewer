@@ -15,7 +15,7 @@ object YandexDAO : DAO {
                 .flatMap {
                     Observable.fromIterable(it.entries)
                 }.map {
-                    Item(it.title.toString(), it.links!!.editMedia.toString())
+                    Item(it.title.toString(), it.img!!.M!!.href.toString(), it.img!!.xXXL!!.href.toString())
                 }
     }
 }
