@@ -12,33 +12,22 @@ import android.widget.ImageView
 import android.widget.Toast
 import com.example.gmasalskikh.imageviewer.R
 import com.example.gmasalskikh.imageviewer.data.Item
-import com.example.gmasalskikh.imageviewer.di.DIContext
+import com.example.gmasalskikh.imageviewer.di.IMAGE_SCROLLER
 import com.example.gmasalskikh.imageviewer.view.imageViewer.ImageViewerActivity
 import com.squareup.picasso.Picasso
-import kotlinx.android.synthetic.main.item_image_scroller.*
-import kotlinx.android.synthetic.main.item_image_scroller.view.*
 import kotlinx.android.synthetic.main.recycler_view_image_scroller.view.*
 import org.koin.android.ext.android.inject
 import java.util.ArrayList
 
 class ImageScrollerFragment : Fragment(), BaseImageScroller.View {
 
-
-    override val presenter: BaseImageScroller.Presenter by inject { mapOf(DIContext.IMAGE_SCROLLER.name to this) }
-
+    override val presenter: BaseImageScroller.Presenter by inject { mapOf(IMAGE_SCROLLER to this) }
+    private val picasso: Picasso by inject()
     private val adapter = Adapter()
     private var itemList: List<Item> = ArrayList()
 
-    override fun showLoading() {
-        TODO("not implemented")
-    }
-
-    override fun hideLoading() {
-        TODO("not implemented")
-    }
-
     override fun showError(err: String) {
-        Toast.makeText(activity, err, Toast.LENGTH_SHORT).show()
+        Toast.makeText(activity, err, Toast.LENGTH_LONG).show()
     }
 
     override fun setListItem(items: List<Item>) {
@@ -75,12 +64,13 @@ class ImageScrollerFragment : Fragment(), BaseImageScroller.View {
         }
     }
 
-    private inner class Holder(val view1: View) : RecyclerView.ViewHolder(view1) {
+    private inner class Holder(val view: View) : RecyclerView.ViewHolder(view) {
         fun bind(item: Item) {
-            Picasso.get()
-                    .load(item.url)
-                    .into(view1.findViewById<ImageView>(R.id.itemImageView))
-            view1.findViewById<ImageView>(R.id.itemImageView).setOnClickListener {
+            picasso.load(item.urlOfLittleSizeImg)
+                    .placeholder(R.drawable.ic_photo)
+                    .error(R.drawable.ic_very_dissatisfied)
+                    .into(view.findViewById<ImageView>(R.id.itemImageView))
+            view.findViewById<ImageView>(R.id.itemImageView).setOnClickListener {
                 presenter.clickToItem(item)
                 startActivity(Intent(activity, ImageViewerActivity::class.java))
             }

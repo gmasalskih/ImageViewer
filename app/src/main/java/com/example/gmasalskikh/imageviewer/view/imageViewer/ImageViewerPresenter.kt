@@ -11,8 +11,4 @@ class ImageViewerPresenter(override val view: BaseImageViewer.View) : BaseImageV
     override fun getLastItem(): Item {
         return itemProvider.lastItem
     }
-
-    override fun stop() {
-    }
-
 }

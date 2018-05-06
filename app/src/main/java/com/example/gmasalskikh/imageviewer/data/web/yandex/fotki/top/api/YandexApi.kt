@@ -4,7 +4,6 @@ import com.example.gmasalskikh.imageviewer.data.web.yandex.fotki.top.pojo.Featur
 import io.reactivex.Observable
 import retrofit2.http.GET
 
-
 interface YandexApi {
 
     @GET("top/")

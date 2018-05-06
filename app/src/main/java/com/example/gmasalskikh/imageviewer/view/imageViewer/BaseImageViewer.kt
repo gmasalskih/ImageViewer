@@ -7,13 +7,10 @@ interface BaseImageViewer {
     interface Presenter : KoinComponent {
         val view: BaseImageViewer.View
         fun getLastItem(): Item
-        fun stop()
     }
 
     interface View {
         val presenter: BaseImageViewer.Presenter
-        fun showLoading()
-        fun hideLoading()
         fun showError(err: String)
     }
 }

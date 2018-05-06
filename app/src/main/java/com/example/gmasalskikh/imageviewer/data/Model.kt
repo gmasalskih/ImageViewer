@@ -1,6 +1,5 @@
 package com.example.gmasalskikh.imageviewer.data
 
-import com.example.gmasalskikh.imageviewer.data.Item
 import io.reactivex.Observable
 import org.koin.standalone.KoinComponent
 

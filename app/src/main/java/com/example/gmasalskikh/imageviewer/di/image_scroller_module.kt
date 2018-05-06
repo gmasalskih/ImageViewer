@@ -5,10 +5,11 @@ import com.example.gmasalskikh.imageviewer.view.imageScroller.ImageScrollerFragm
 import com.example.gmasalskikh.imageviewer.view.imageScroller.ImageScrollerPresenter
 import org.koin.dsl.module.applicationContext
 
+const val IMAGE_SCROLLER = "IMAGE_SCROLLER"
 
 val image_scroller_module = applicationContext {
-    context(DIContext.IMAGE_SCROLLER.name) {
+    context(IMAGE_SCROLLER) {
         factory { ImageScrollerFragment() }
-        bean { ImageScrollerPresenter(it[DIContext.IMAGE_SCROLLER.name]) as BaseImageScroller.Presenter }
+        bean { ImageScrollerPresenter(it[IMAGE_SCROLLER]) as BaseImageScroller.Presenter }
     }
 }
