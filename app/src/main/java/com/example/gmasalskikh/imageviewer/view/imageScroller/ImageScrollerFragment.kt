@@ -15,7 +15,6 @@ import com.example.gmasalskikh.imageviewer.data.Item
 import com.example.gmasalskikh.imageviewer.di.IMAGE_SCROLLER
 import com.example.gmasalskikh.imageviewer.view.imageViewer.ImageViewerActivity
 import com.squareup.picasso.Picasso
-import kotlinx.android.synthetic.main.recycler_view_image_scroller.view.*
 import org.koin.android.ext.android.inject
 import java.util.ArrayList
 
@@ -23,7 +22,7 @@ class ImageScrollerFragment : Fragment(), BaseImageScroller.View {
 
     override val presenter: BaseImageScroller.Presenter by inject { mapOf(IMAGE_SCROLLER to this) }
     private val picasso: Picasso by inject()
-    private val adapter = Adapter()
+    private val adapterRV = Adapter()
     private var itemList: List<Item> = ArrayList()
 
     override fun showError(err: String) {
@@ -35,19 +34,17 @@ class ImageScrollerFragment : Fragment(), BaseImageScroller.View {
     }
 
     override fun updateUI() {
-        adapter.notifyDataSetChanged()
-    }
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
+        adapterRV.notifyDataSetChanged()
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
-        val view = inflater.inflate(R.layout.recycler_view_image_scroller, container, false)
-        view.recycler_view_image_scroller_container.layoutManager = GridLayoutManager(activity, 2)
-        view.recycler_view_image_scroller_container.adapter = adapter
         presenter.init()
-        return view
+        return inflater.inflate(R.layout.recycler_view_image_scroller, container, false).apply {
+            findViewById<RecyclerView>(R.id.recycler_view_image_scroller_container).apply {
+                layoutManager = GridLayoutManager(activity, 2)
+                adapter = adapterRV
+            }
+        }
     }
 
     private inner class Adapter : RecyclerView.Adapter<ImageScrollerFragment.Holder>() {

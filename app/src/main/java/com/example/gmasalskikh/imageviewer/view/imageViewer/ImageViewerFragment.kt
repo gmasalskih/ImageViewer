@@ -20,10 +20,6 @@ class ImageViewerFragment: Fragment(), BaseImageViewer.View {
         Toast.makeText(activity, err, Toast.LENGTH_SHORT).show()
     }
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-    }
-
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         val view =  inflater.inflate(R.layout.fragment_image_viewer, container, false)
         Picasso.get()
